@@ -1,0 +1,76 @@
+<html>
+  <head>
+    {% load static %}
+	<style>
+	  table, th, td {
+	      font-family: Helvetica;
+	      font-size: 28px;
+		  padding: 12px;
+	  }
+	  body {
+	      font-family: Helvetica;
+	      font-size: 28px;
+	      margin: 0;
+	      padding: 0;
+	  }
+	  button, input {
+	      background: -webkit-linear-gradient(top,#fff,#ccc);
+	      border-radius: 5px;
+	      font-size: 36px;
+	      padding: 15px;
+	  }
+	  button[type="submit"] {
+	      background: -webkit-linear-gradient(top, #0cc, #08c);
+	  }
+	</style>
+  </head>
+  <body>
+    <form action="add" method="post">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td>
+                    <label>Date:</label>
+	            </td>
+	            <td>
+		            {{ form.date }}
+		        </td>
+		    </tr>
+		    <tr>
+	            <td>
+		            <label>Where:</label>
+		        </td>
+		        <td>
+		            {{ form.where }}
+		        </td>
+	        </tr>
+	        <tr>
+	            <td>
+		            <label>Score:</label>
+		        </td>
+		        <td>
+		            {{ form.score }}
+		        </td>
+	        </tr>
+	        <tr>
+	            <td>
+		            <label>CR:</label>
+		        </td>
+		        <td>
+		            {{ form.cr }}
+		        </td>
+		    </tr>
+		    <tr>
+	            <td>
+		            <label>Slope:</label>
+		        </td>
+		        <td>
+		            {{ form.slope }}
+		        </td>
+	        </tr>
+        </table>
+	  <input type="submit" name="do" value="Add" style="background: -webkit-linear-gradient(top, #0cc, #08c)">
+	  <button value="Back" onclick="window.location.href='/hhs';">Back</button>
+	</form>
+  </body>
+</html>

@@ -1,0 +1,67 @@
+<html>
+  <head>
+	{% load static %}
+	<style>
+	  table, th, td {
+		  border: 1px solid black;
+		  border-collapse: collapse;
+		  padding: 12px;
+	  }
+	  body {
+	      font-family: Helvetica;
+	      font-size: 28px;
+	      margin: 0;
+	      padding: 0;
+	  }
+	  button {
+	      background: -webkit-linear-gradient(top,#fff,#ccc);
+	      border-radius: 5px;
+	      font-size: 36px;
+	      padding: 15px;
+	  }
+	  button[type="submit"] {
+	      background: -webkit-linear-gradient(top, #0cc, #08c);
+	  }
+	</style>
+  </head>
+  <body>
+      <fieldset class="buttons">
+        <button type="submit"  onclick="window.location.href='/hhs/add';">Add</button>
+        <button onclick="window.location.href='/hhs';"> Handicap Index: {{ HCPI }}</button>
+        <button onclick="window.location.href='/hhs/logout';"> Logout</button>
+    </fieldset>
+    <br>
+    <table style="width:90%; font-size:36px">
+      <thead>
+	<tr style="background-color: orange">
+	  <th style="text-align:right;">Date</th>
+	  <th style="text-align:right;">Where</th>
+	  <th style="text-align:right;">Score</th>
+	  <th style="text-align:right;">CR</th>
+	  <th style="text-align:right;">Slope</th>
+	  <th style="text-align:right;">SD</th>
+	</tr>
+      </thead>
+      <tbody>
+	{% for hhs in latest_list %}
+	{% if hhs in best %}
+	<tr style="background-color: lightgreen">
+	  {% elif forloop.counter > 20 %}
+	<tr style="background-color: lightgrey">
+	  {% else %}
+	<tr>
+	  {% endif %}
+	  <th style="text-align:right;">
+	    <a href="{% url 'detail' hhs.id %}">
+	      {{ hhs.date|date:"Y-m-d" }}</a></th>
+	  <td style="text-align:right;">{{ hhs.where }}</td>
+	  <td style="text-align:right;">{{ hhs.score }}</td>
+	  <td style="text-align:right;">{{ hhs.cr }}</td>
+	  <td style="text-align:right;">{{ hhs.slope }}</td>
+	  <td style="text-align:right;">{{ hhs.sd }}</td>
+	</tr>
+	{% endfor %}
+      </tbody>
+    </table>
+  </body>
+</html>
