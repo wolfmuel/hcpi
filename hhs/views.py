@@ -18,7 +18,7 @@ def login_view(request):
 	if user is not None:
 		login(request, user)
 		return HttpResponseRedirect('/hhs')
-	return HttpResponseRedirect('/hhs/accounts/login')
+	return HttpResponseRedirect('/accounts/login')
 
 @login_required
 def logout_view(request):
