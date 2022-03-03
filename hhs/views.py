@@ -50,7 +50,7 @@ def add(request):
 			cdate = form.cleaned_data['date']
 			cwhere = form.cleaned_data['where']
 			cscore = form.cleaned_data['score']
-			ccr = form.cleaned_data['cr'].replace(',', '.')
+			ccr = form.cleaned_data['cr']
 			cslope = form.cleaned_data['slope']
 
 			h = HHSEntry(player=request.user, date=cdate, where=cwhere,
