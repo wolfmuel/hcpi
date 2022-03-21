@@ -13,8 +13,8 @@ class HHSForm(forms.Form):
 #	where = forms.TextInput(attrs={'size': 10, 'title': 'Place'})
 	score = forms.IntegerField()
 #	cr = forms.DecimalField(max_digits=3, decimal_places=1, localize=True)
-	cr = forms.DecimalField(max_digits=3, decimal_places=1, localize=True,
-							widget=forms.NumberInput(attrs={'size': '4', 'placeholder': '71.9'}))
+	cr = forms.DecimalField(max_digits=3, decimal_places=1, localize=True, initial=71.9,
+							widget=forms.NumberInput(attrs={'size': '4'}))
 	slope = forms.IntegerField()
 
 
@@ -23,7 +23,7 @@ class HHSDetailForm(forms.Form):
 	where = forms.CharField(required=False)
 	score = forms.IntegerField()
 	cr = forms.DecimalField(max_digits=3, decimal_places=1, localize=True,
-							widget=forms.NumberInput(attrs={'size': '4', 'placeholder': '71.9'}))
+							widget=forms.NumberInput(attrs={'size': '4'}))
 	slope = forms.IntegerField()
 	sd = forms.DecimalField(max_digits=3, decimal_places=1, required=False)
 
