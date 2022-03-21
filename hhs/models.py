@@ -48,3 +48,7 @@ class HHSEntry(models.Model):
 		return "%s, %s, %s" %(self.date.isoformat(), self.where, self.score) 
 
 
+class UserHCPI(model.Model):
+	player = models.CharField(max_length=20, default='wolfmuel')
+	lowHCPI = models.DecimalField("lowHCPI", default=18.0, max_digits=3, decimal_places=1)
+	date = models.DateField('date played')
