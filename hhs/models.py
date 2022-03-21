@@ -1,6 +1,9 @@
 import math
 from django.db import models
 
+import logging
+logger = logging.getLogger(__name__)
+
 
 def round_up(n, decimals=0):
     multiplier = 10 ** decimals
@@ -45,11 +48,14 @@ class HHSEntry(models.Model):
 				for i in l[:8]:
 					h = h + i
 				calcHCPI = round_up(h / 8, 1)
+				logger.warning("user: "+str(user)+"curHCPI:"+str(calcHCPI))
 				lhs = UserHCPI.objects.filter(player=user)
+				logger.warning("len(lhs): "+str(len(lhs)))
 				lowHCPI = 0
 				curHCPI = 0
 				if len(lhs) > 0:
 					lowHCPI = lhs.lowHCPI
+					logger.warning("low(lhs): "+str(lowHCPI))
 
 				if lowHCPI != 0:
 					diffHCPI = curHCPI - lowHCPI
