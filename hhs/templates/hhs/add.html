@@ -26,7 +26,6 @@
   </head>
   <body>
     {% load l10n %}
-    {% localize on %}
     <form action="add" method="post">
         {% csrf_token %}
         <table>
@@ -59,7 +58,11 @@
 		            <label>CR:</label>
 		        </td>
 		        <td>
+			  {% localize on %}
 		            {{ form.cr }}
+			  {% localize off %}
+			  {% endlocalize %}
+
 		        </td>
 		    </tr>
 		    <tr>
@@ -74,7 +77,5 @@
 	  <input type="submit" name="do" value="Add" style="background: -webkit-linear-gradient(top, #0cc, #08c)">
 	  <button value="Back" onclick="window.location.href='/hhs';">Back</button>
 	</form>
-    {% localize off %}
-    {% endlocalize %}
   </body>
 </html>
