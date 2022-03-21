@@ -12,7 +12,7 @@ class HHSEntry(models.Model):
 	date = models.DateField('date played')
 	where = models.CharField(max_length=10)
 	score = models.IntegerField(default=72)
-	cr = models.DecimalField("CR", default=72.0, max_digits=3, decimal_places=1, localize=True)
+	cr = models.DecimalField("CR", default=72.0, max_digits=3, decimal_places=1)
 	slope = models.IntegerField(default=135)
 	sd = models.DecimalField(default=10, max_digits=3,
 							 decimal_places=1, editable=False)
