@@ -1,4 +1,10 @@
+import math
 from django.db import models
+
+
+def round_up(n, decimals=0):
+    multiplier = 10 ** decimals
+    return math.ceil(n * multiplier) / multiplier
 
 # Create your models here.
 class HHSEntry(models.Model):
@@ -23,7 +29,7 @@ class HHSEntry(models.Model):
 			if len(l) >= 8:
 				for i in l[:8]:
 					h = h + i
-				return round(h / 8, 1)
+				return round_up(h / 8, 1)
 		return 0
 
 	@classmethod
