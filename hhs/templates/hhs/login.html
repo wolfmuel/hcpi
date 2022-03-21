@@ -54,8 +54,12 @@
 </tr>
 </table>
 
-<input type="submit" value="login">
-<input type="hidden" name="next" value="{{ next }}">
+<fieldset class="buttons">
+  <button type="submit"  onclick="window.location.href='/hhs/';">Login</button>
+</fieldset>
+
+<!-- <input type="submit" value="login"> -->
+<!-- <input type="hidden" name="next" value="{{ next }}"> -->
 </form>
 
 {# Assumes you setup the password_reset view in your URLconf #}
