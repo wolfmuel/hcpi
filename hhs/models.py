@@ -33,6 +33,32 @@ class HHSEntry(models.Model):
 		return 0
 
 	@classmethod
+	def get_curhcpi(cls, user):
+		ds = HHSEntry.objects.filter(player=user).order_by('-date')
+		if len(ds) >= 20:
+			l = []
+			h = 0
+			for i in ds[:20]:
+				l.append(i.sd)
+				l.sort()
+			if len(l) >= 8:
+				for i in l[:8]:
+					h = h + i
+				calcHCPI = round_up(h / 8, 1)
+				lhs = UserHCPI.objects.filter(player=user)
+				lowHCPI = 0
+				curHCPI = 0
+				if len(lhs) > 0:
+					lowHCPI = lhs.lowHCPI
+
+				if lowHCPI != 0:
+					diffHCPI = curHCPI - lowHCPI
+					if diffHCPI >= 3:
+						curHCPI = lowHCPI + 3 + (calcHCPI - lowHCPI + 3) / 2
+						return (calcHCPI, lowHCPI, curHCPI)
+		return 0
+
+	@classmethod
 	def get_best(cls, user):
 		ds = HHSEntry.objects.filter(player=user).order_by('-date')
 		if len(ds) >= 20:
