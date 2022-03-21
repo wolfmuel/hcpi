@@ -1,4 +1,5 @@
 from django import forms
+import datetime
 
 class DateInput(forms.DateInput):
     input_type = "date"
@@ -8,7 +9,7 @@ class DateInput(forms.DateInput):
         super().__init__(**kwargs)
 
 class HHSForm(forms.Form):
-	date = forms.DateField(widget=DateInput(), localize=True)
+	date = forms.DateField(widget=DateInput(), localize=True, initial=datetime.date.today)
 	where = forms.CharField(required=False)
 #	where = forms.TextInput(attrs={'size': 10, 'title': 'Place'})
 	score = forms.IntegerField()
