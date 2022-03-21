@@ -2,7 +2,7 @@
   <head>
 	{% load static %}
 	<style>
-	  table, th, td {
+	  table, th, tr, td {
 		  border: 1px solid black;
 		  border-collapse: collapse;
 		  padding: 12px;
@@ -39,7 +39,7 @@
     <p>Your account doesn't have access to this page. To proceed,
     please login with an account that has access.</p>
     {% else %}
-    <p>Please login to see this page.</p>
+    <p>Provide user name and password to login!</p>
     {% endif %}
 {% endif %}
 
