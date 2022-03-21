@@ -25,6 +25,8 @@
 	</style>
   </head>
   <body>
+    {% load l10n %}
+    {% localize on %}
     <form action="add" method="post">
         {% csrf_token %}
         <table>
@@ -72,5 +74,6 @@
 	  <input type="submit" name="do" value="Add" style="background: -webkit-linear-gradient(top, #0cc, #08c)">
 	  <button value="Back" onclick="window.location.href='/hhs';">Back</button>
 	</form>
+    {% localize off %}
   </body>
 </html>
