@@ -54,7 +54,7 @@ class HHSEntry(models.Model):
 				lowHCPI = 0
 				curHCPI = 0
 				if len(lhs) > 0:
-					lowHCPI = lhs[0].lowHCPI * 1.0
+					lowHCPI = float(lhs[0].lowHCPI)
 					logger.warning("low(lhs): "+str(lowHCPI))
 
 				if lowHCPI != 0:
