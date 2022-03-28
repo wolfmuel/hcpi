@@ -66,9 +66,9 @@ class HHSEntry(models.Model):
 					if diffHCPI >= 3:
 						baseHCPI = lowHCPI + 3
 						curHCPI = baseHCPI + (calcHCPI - baseHCPI) / 2
-				logger.warning("calcHCPI: "+str(calcHCPI)+"curHCPI: "+str(curHCPI)) 
+				logger.warning("calcHCPI: "+str(calcHCPI)+" curHCPI: "+str(curHCPI)) 
 				return (calcHCPI, round_up(curHCPI))
-		return 0
+		return (0, 0)
 
 	@classmethod
 	def get_best(cls, user):
