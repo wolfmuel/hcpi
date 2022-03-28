@@ -35,10 +35,16 @@ def index(request):
 	latest_list = HHSEntry.objects.filter(player=request.user).order_by('-date')
 	template = loader.get_template('hhs/index.html')
 
+	(calcHCPI, curHCPI) =  HHSEntry.get_curhcpi(request.user),
+
+	if curHCPI != 0:
+		strHCPI = "HCPI: "+str(curHCPI)+" calcHCPI: "+str(calcHCPI)
+	else:
+		strHCPI = "HCPI: "+str(calcHCPI)
+
 	context = {
 		'latest_list': latest_list,
-		'HCPI': HHSEntry.get_hcpi(request.user),
-		'curHCPI': HHSEntry.get_curhcpi(request.user),
+		'HCPI': strHCPI,
 		'best': HHSEntry.get_best(request.user),
 	}
 	return HttpResponse(template.render(context, request))
