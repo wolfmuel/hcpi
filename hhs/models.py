@@ -63,7 +63,7 @@ class HHSEntry(models.Model):
 						baseHCPI = lowHCPI + 3
 						curHCPI = baseHCPI + (calcHCPI - baseHCPI) / 2
 				logger.warning("calcHCPI: "+str(calcHCPI)+"curHCPI: "+str(curHCPI)) 
-				return (calcHCPI, lowHCPI, round_up(curHCPI))
+				return round_up(curHCPI)
 		return 0
 
 	@classmethod

@@ -38,6 +38,7 @@ def index(request):
 	context = {
 		'latest_list': latest_list,
 		'HCPI': HHSEntry.get_hcpi(request.user),
+		'curHCPI': HHSEntry.get_curhcpi(request.user)
 		'best': HHSEntry.get_best(request.user),
 	}
 	return HttpResponse(template.render(context, request))
