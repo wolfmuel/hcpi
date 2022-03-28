@@ -7,7 +7,7 @@ logger = logging.getLogger(__name__)
 
 def round_half_up(n, decimals=0):
 	multiplier = 10 ** decimals
-	return math.floor(n*multiplier + 0.5) / multiplier
+	return math.floor(float(n)*multiplier + 0.5) / multiplier
 
 def round_up(n):
 	a = round_half_up(n, 2)
