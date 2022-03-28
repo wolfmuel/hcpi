@@ -48,20 +48,22 @@ class HHSEntry(models.Model):
 				for i in l[:8]:
 					h = h + i
 				calcHCPI = round_up(h / 8, 1)
-				logger.warning("user: "+str(user)+"curHCPI:"+str(calcHCPI))
+				logger.warning("user: "+str(user)+" curHCPI:"+str(calcHCPI))
 				lhs = UserHCPI.objects.filter(player=user)
 				logger.warning("len(lhs): "+str(len(lhs)))
 				lowHCPI = 0
 				curHCPI = 0
 				if len(lhs) > 0:
-					lowHCPI = lhs.lowHCPI
+					lowHCPI = lhs[0].lowHCPI
 					logger.warning("low(lhs): "+str(lowHCPI))
 
 				if lowHCPI != 0:
-					diffHCPI = curHCPI - lowHCPI
+					diffHCPI = calcHCPI - lowHCPI
 					if diffHCPI >= 3:
-						curHCPI = lowHCPI + 3 + (calcHCPI - lowHCPI + 3) / 2
-						return (calcHCPI, lowHCPI, curHCPI)
+						baseHCPI = lowHCPI + 3
+						curHCPI = baseHCPI + (calcHCPI - baseHCPI) / 2
+				logger.warning("calcHCPI: "+str(calcHCPI)+"curHCPI: "+str(curHCPI)) 
+				return (calcHCPI, lowHCPI, round_up(curHCPI))
 		return 0
 
 	@classmethod
