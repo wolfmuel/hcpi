@@ -39,7 +39,7 @@ def index(request):
 	curHCPI = HHSEntry.get_curhcpi(request.user)
 
 	if curHCPI != 0:
-		strHCPI = "HCPI: "+str(curHCPI)+" calcHCPI: "+str(calcHCPI)
+		strHCPI = "HCPI: "+str(curHCPI)+" -  calc HCPI: "+str(calcHCPI)
 	else:
 		strHCPI = "HCPI: "+str(calcHCPI)
 
