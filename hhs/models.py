@@ -5,9 +5,13 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-def round_up(n, decimals=0):
-    multiplier = 10 ** decimals
-    return math.ceil(n * multiplier) / multiplier
+def round_half_up(n, decimals=0):
+	multiplier = 10 ** decimals
+	return math.floor(n*multiplier + 0.5) / multiplier
+
+def round_up(n):
+	a = round_half_up(n, 2)
+	return round_half_up(a, 1)
 
 # Create your models here.
 class HHSEntry(models.Model):
