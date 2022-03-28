@@ -51,7 +51,7 @@ class HHSEntry(models.Model):
 			if len(l) >= 8:
 				for i in l[:8]:
 					h = h + i
-				calcHCPI = round_up(h / 8, 1)
+				calcHCPI = round_up(h / 8)
 				logger.warning("user: "+str(user)+" calcHCPI: "+str(calcHCPI)+"nr: "+ str(h/8))
 				lhs = UserHCPI.objects.filter(player=user)
 				logger.warning("len(lhs): "+str(len(lhs)))
