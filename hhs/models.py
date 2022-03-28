@@ -36,7 +36,7 @@ class HHSEntry(models.Model):
 			if len(l) >= 8:
 				for i in l[:8]:
 					h = h + i
-				return round_up(h / 8, 1)
+				return round_up(h / 8)
 		return 0
 
 	@classmethod
@@ -67,7 +67,7 @@ class HHSEntry(models.Model):
 						baseHCPI = lowHCPI + 3
 						curHCPI = baseHCPI + (calcHCPI - baseHCPI) / 2
 				logger.warning("calcHCPI: "+str(calcHCPI)+"curHCPI: "+str(curHCPI)) 
-				return round_up(curHCPI,1)
+				return round_up(curHCPI)
 		return 0
 
 	@classmethod
