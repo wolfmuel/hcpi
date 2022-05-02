@@ -23,6 +23,8 @@ class HHSEntry(models.Model):
 	slope = models.IntegerField(default=135)
 	sd = models.DecimalField(default=10, max_digits=3,
 							 decimal_places=1, editable=False)
+	hcpi = models.DecimalField(default=10, max_digits=3,
+							   decimal_places=1, editable=False)
 
 	@classmethod
 	def get_hcpi(cls, user):
