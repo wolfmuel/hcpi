@@ -1,3 +1,7 @@
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+import matplotlib.dates as mdates
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import render
 from django.template import loader
@@ -128,3 +132,22 @@ def delete(request, hhs_id):
 		raise Http404("Entry does not exist")
 	
 	return HttpResponseRedirect('/hhs')
+
+def graph(request):
+	response = HttpResponse(content_type='image/png')
+	entries =  HHSEntry.objects.filter(player=request.user).order_by('-date')
+
+	dates = [x.date for x in entries]
+	hs = [x.hcpi for x in entries]
+    fig, ax = plt.subplots(figsize=(10,4))
+    # fill the report here
+	ax.plot(dates, hs, '--bo')
+    fig.autofmt_xdate()
+    ax.fmt_xdata = mdates.DateFormatter('%Y-%m-%d')
+    ax.set_title('By date')
+    ax.set_ylabel("Count")
+    ax.set_xlabel("Date")
+    ax.grid(linestyle="--", linewidth=0.5, color='.25', zorder=-10)
+    fig.savefig(response)
+    return response
+

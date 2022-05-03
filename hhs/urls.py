@@ -8,6 +8,7 @@ urlpatterns = [
     path('add', views.add, name='add'),
     path('login', views.login_view, name='login'),
     path('logout', views.logout_view, name='logout'),
+    path('graph', views.index, name='graph'),
     path('<int:hhs_id>/', views.detail, name='detail'),
 	path('accounts/login/',
 		 auth_views.LoginView.as_view(template_name='hhs/login.html')),
