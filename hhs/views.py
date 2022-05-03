@@ -64,6 +64,9 @@ def add(request):
 			h = HHSEntry(player=request.user, date=cdate, where=cwhere,
 						 score=cscore, cr=ccr, slope=cslope)
 			h.save()
+			calcHCPI = HHSEntry.get_hcpi(request.user)
+			h.hcpi = calcHCPI
+			h.save()
 		else:
 			logger.warning("error: "+str(form.errors))
 		return HttpResponseRedirect('/hhs')
