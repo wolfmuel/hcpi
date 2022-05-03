@@ -38,7 +38,11 @@ class HHSEntry(models.Model):
 			if len(l) >= 8:
 				for i in l[:8]:
 					h = h + i
-				return round_up(h / 8)
+				hcpi = round_up(h / 8)
+				o = ds[0]
+				o.hcpi = hcpi
+				o.save()
+				return hcpi
 		return 0
 
 	@classmethod
@@ -83,9 +87,6 @@ class HHSEntry(models.Model):
 	def save(self, *args, **kwargs):
 		p = self.player
 		self.sd = (self.score-self.cr)*113/self.slope
-		super().save(*args, **kwargs)
-		self.hcpi = self.get_hcpi(self.player)
-		self.player = p
 		super().save(*args, **kwargs)
 
 	def __str__(self):
