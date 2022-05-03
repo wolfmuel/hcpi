@@ -5,9 +5,9 @@ l = len(ds)
 r = 0
 for i in range(0, l-20):
 	li = ds[i:20]
-	st = "chunk: "+i
+	st = "chunk: "+ str(i)
 	for s in li:
-		st += " " + s.score
+		st += " " + str(s.score)
 	print(st)
 		
 
