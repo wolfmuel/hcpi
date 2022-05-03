@@ -31,7 +31,7 @@ l = len(ds)
 r = 0
 for i in range(0, l-19):
 	li = ds[i:i+20]
-	h = li[i]
+	h = li[0]
 	h.hcpi = get_hcpi(li)
 	h.save()
 	print(h.hcpi)
