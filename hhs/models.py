@@ -81,9 +81,11 @@ class HHSEntry(models.Model):
 		return []
 		
 	def save(self, *args, **kwargs):
+		p = self.player
 		self.sd = (self.score-self.cr)*113/self.slope
 		super().save(*args, **kwargs)
 		self.hcpi = self.get_hcpi(self.player)
+		self.player = p
 		super().save(*args, **kwargs)
 
 	def __str__(self):
