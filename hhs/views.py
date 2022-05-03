@@ -66,8 +66,8 @@ def add(request):
 			h.save()
 			calcHCPI = HHSEntry.get_hcpi(request.user)
 			h.hcpi = calcHCPI
+			logger.warning("added hcpi: "+str(h.hcpi))
 			h.save()
-
 		else:
 			logger.warning("error: "+str(form.errors))
 		return HttpResponseRedirect('/hhs')
@@ -102,6 +102,7 @@ def detail(request, hhs_id):
 					h.save()
 					calcHCPI = HHSEntry.get_hcpi(request.user)
 					h.hcpi = calcHCPI
+					logger.warning("changed hcpi: "+str(h.hcpi))
 					h.save()
 
 				elif request.POST['do'] == 'Delete':
