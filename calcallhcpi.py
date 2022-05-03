@@ -34,6 +34,6 @@ for i in range(0, l-19):
 	h = li[i]
 	h.hcpi = get_hcpi(li)
 	h.save()
-	print(hcpi)
+	print(h.hcpi)
 		
 
