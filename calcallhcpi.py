@@ -23,11 +23,17 @@ def get_hcpi(li):
 	return 0
 
 ds = HHSEntry.objects.filter(player='wolfmuel').order_by('-date')
+for d in ds:
+	d.hcpi = 0
+	d.save()
+
 l = len(ds)
 r = 0
 for i in range(0, l-19):
 	li = ds[i:i+20]
-	hcpi = get_hcpi(li)
+	h = li[i]
+	h.hcpi = get_hcpi(li)
+	h.save()
 	print(hcpi)
 		
 

@@ -85,7 +85,8 @@ class HHSEntry(models.Model):
 		super().save(*args, **kwargs)
 
 	def __str__(self):
-		return "%s, %s, %s" %(self.date.isoformat(), self.where, self.score) 
+		return "%s, %s, %s, %s" % (self.date.isoformat(), self.where, 
+								   self.score, self.hcpi) 
 
 
 class UserHCPI(models.Model):
