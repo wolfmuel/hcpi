@@ -139,15 +139,15 @@ def graph(request):
 
 	dates = [x.date for x in entries]
 	hs = [x.hcpi for x in entries]
-    fig, ax = plt.subplots(figsize=(10,4))
-    # fill the report here
+	fig, ax = plt.subplots(figsize=(10,4))
+	# fill the report here
 	ax.plot(dates, hs, '--bo')
-    fig.autofmt_xdate()
-    ax.fmt_xdata = mdates.DateFormatter('%Y-%m-%d')
-    ax.set_title('By date')
-    ax.set_ylabel("Count")
-    ax.set_xlabel("Date")
-    ax.grid(linestyle="--", linewidth=0.5, color='.25', zorder=-10)
-    fig.savefig(response)
-    return response
+	fig.autofmt_xdate()
+	ax.fmt_xdata = mdates.DateFormatter('%Y-%m-%d')
+	ax.set_title('HCPI History')
+	ax.set_ylabel("HCPI")
+	ax.set_xlabel("Date")
+	ax.grid(linestyle="--", linewidth=0.5, color='.25', zorder=-10)
+	fig.savefig(response)
+	return response
 
