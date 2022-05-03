@@ -57,12 +57,12 @@
 	  <th style="text-align:right;">
 	    <a href="{% url 'detail' hhs.id %}">
 	      {{ hhs.date|date:"Y-m-d" }}</a></th>
+	  <td style="text-align:right;">{{ hhs.hcpi }}</td>
 	  <td style="text-align:right;">{{ hhs.where }}</td>
 	  <td style="text-align:right;">{{ hhs.score }}</td>
 	  <td style="text-align:right;">{{ hhs.cr }}</td>
 	  <td style="text-align:right;">{{ hhs.slope }}</td>
 	  <td style="text-align:right;">{{ hhs.sd }}</td>
-	  <td style="text-align:right;">{{ hhs.hcpi }}</td>
 	</tr>
 	{% endfor %}
       </tbody>
