@@ -99,6 +99,10 @@ def detail(request, hhs_id):
 					h.cr = ccr
 					h.slope = cslope
 					h.save()
+					calcHCPI = HHSEntry.get_hcpi(request.user)
+					h.hcpi = calcHCPI
+					h.save()
+
 				elif request.POST['do'] == 'Delete':
 					h = HHSEntry.objects.get(pk=hhs_id)
 					logger.warning("deleteing: "+str(h.date))
