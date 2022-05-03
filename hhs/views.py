@@ -137,9 +137,10 @@ def graph(request):
 	response = HttpResponse(content_type='image/png')
 	entries =  HHSEntry.objects.filter(player=request.user).order_by('-date')
 
-	dates = [x.date for x in entries]
-	hs = [x.hcpi for x in entries]
-	fig, ax = plt.subplots(figsize=(10,4))
+	ent = entries[:len(entries)-19]
+	dates = [x.date for x in ent]
+	hs = [x.hcpi for x in ent]
+	fig, ax = plt.subplots(figsize=(8,6))
 	# fill the report here
 	ax.plot(dates, hs, '--bo')
 	fig.autofmt_xdate()
