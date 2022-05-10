@@ -93,7 +93,7 @@ def detail(request, hhs_id):
 					cscore = form.cleaned_data['score']
 					ccr = form.cleaned_data['cr']
 					cslope = form.cleaned_data['slope']
-					
+
 					h = HHSEntry.objects.get(pk=hhs_id)
 					h.date = cdate
 					h.where = cwhere
@@ -121,7 +121,7 @@ def detail(request, hhs_id):
 			form = HHSDetailForm(data)
 	except HHSEntry.DoesNotExist:
 		raise Http404("Entry does not exist")
-	
+
 	return render(request, "hhs/detail.html", {'form': form})
 
 def delete(request, hhs_id):
@@ -130,7 +130,7 @@ def delete(request, hhs_id):
 		h.delete()
 	except HHSEntry.DoesNotExist:
 		raise Http404("Entry does not exist")
-	
+
 	return HttpResponseRedirect('/hhs')
 
 def graph(request):
@@ -148,6 +148,7 @@ def graph(request):
 	ax.set_title('HCPI History')
 	ax.set_ylabel("HCPI")
 	ax.set_xlabel("Date")
+	ax.set_ylim(0, 18)
 	ax.grid(linestyle="--", linewidth=0.5, color='.25', zorder=-10)
 	fig.savefig(response)
 	return response
