@@ -1,6 +1,21 @@
 <html>
   <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Handicap Index</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+    <script>
+      $( "#menu" ).menu();
+      } );
+    </script>
+    <style>
+      .ui-menu { width: 150px; }
+    </style>
 	{% load static %}
+
 	<style>
 	  table, th, td {
 		  border: 1px solid black;
@@ -27,6 +42,13 @@
 	</style>
   </head>
   <body>
+    <ul id="menu">
+      <li><div>Menu</div>
+	<ul>
+	  <li><div>Add</div></li>
+	  <li><div>Logout</div></li>
+	</ul>
+      </li>
       <fieldset class="buttons">
         <button type="submit"  onclick="window.location.href='/hhs/add';">Add</button>
         <button onclick="window.location.href='/hhs/';"> {{ HCPI }} </button>
