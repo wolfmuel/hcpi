@@ -135,11 +135,10 @@ def delete(request, hhs_id):
 
 def graph(request):
 	response = HttpResponse(content_type='image/png')
-	entries =  HHSEntry.objects.filter(player=request.user).order_by('-date')
+	entries =  HHSEntry.objects.filter(player=request.user).order_by('date')
 
-	ent = entries[:len(entries)-19]
-	dates = [x.date for x in ent]
-	hs = [x.hcpi for x in ent]
+	dates = entries.score
+	hs = entries.date
 	fig, ax = plt.subplots(figsize=(8,6))
 	# fill the report here
 	ax.plot(dates, hs, '--bo')
