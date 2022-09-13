@@ -135,7 +135,7 @@ def delete(request, hhs_id):
 
 def graph(request):
 	response = HttpResponse(content_type='image/png')
-	entries =  HHSEntry.objects.filter(player=request.user).order_by('date')
+	entries =  HHSEntry.objects.filter(player=request.user).order_by('-date')
 
 	ent = entries[:len(entries)-19]
 	dates = [x.date for x in ent]

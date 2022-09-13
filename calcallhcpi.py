@@ -22,7 +22,7 @@ def get_hcpi(li):
 		return round_up(h / 8)
 	return 0
 
-ds = HHSEntry.objects.filter(player='jessica').order_by('-date')
+ds = HHSEntry.objects.filter(player='alex').order_by('-date')
 for d in ds:
 	d.hcpi = 0
 	d.save()
