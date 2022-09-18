@@ -154,3 +154,9 @@ def graph(request):
 	fig.savefig(response)
 	return response
 
+
+def download(request):
+	od.makedirs('/download/'+user, exist_ok=True)
+	return HttpResponseRedirect('/hhs')
+
+		
