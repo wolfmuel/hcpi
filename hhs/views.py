@@ -39,6 +39,7 @@ def index(request):
 	latest_list = HHSEntry.objects.filter(player=request.user).order_by('-date')
 	template = loader.get_template('hhs/index.html')
 
+	HHSEntry.calc_all_hcpis(request.user)
 	calcHCPI = HHSEntry.get_hcpi(request.user)
 	curHCPI = HHSEntry.get_curhcpi(request.user)
 

@@ -13,6 +13,18 @@ def round_up(n):
 	a = round_half_up(n, 2)
 	return round_half_up(a, 1)
 
+def get_hcpi_fromlist(li):
+	l = []
+	h = 0
+	for i in li:
+		l.append(i.sd)
+		l.sort()
+	if len(l) >= 8:
+		for i in l[:8]:
+			h = h + i
+		return round_up(h / 8)
+	return 0
+
 # Create your models here.
 class HHSEntry(models.Model):
 	player = models.CharField(max_length=20, default='wolfmuel')
@@ -83,6 +95,21 @@ class HHSEntry(models.Model):
 			l20 = sorted(ds[:20], key=lambda hhs: hhs.sd)
 			return l20[:8]
 		return []
+		
+	@classmethod
+	def calc_all_hcpis(cls, user):
+		ds = HHSEntry.objects.filter(player=user).order_by('-date')
+		for d in ds:
+			d.hcpi = 0
+			d.save()
+
+		l = len(ds)
+		r = 0
+		for i in range(0, l-19):
+			li = ds[i:i+20]
+			h = li[0]
+			h.hcpi = get_hcpi_fromlist(li)
+			h.save()
 		
 	def save(self, *args, **kwargs):
 		p = self.player
