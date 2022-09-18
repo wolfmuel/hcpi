@@ -157,7 +157,7 @@ def graph(request):
 
 
 def download(request):
-	os.makedirs('/download/'+user, exist_ok=True)
+	os.makedirs('/download/'+request.user, exist_ok=True)
 	return HttpResponseRedirect('/hhs')
 
 		
