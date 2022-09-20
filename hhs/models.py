@@ -84,7 +84,7 @@ class HHSEntry(models.Model):
 					if diffHCPI >= 3:
 						baseHCPI = lowHCPI + 3
 						curHCPI = baseHCPI + (calcHCPI - baseHCPI) / 2
-				logger.warning("calcHCPI: "+str(calcHCPI)+" curHCPI: "+str(curHCPI)) 
+				logger.warning("calcHCPI: "+str(calcHCPI)+" curHCPI: "+str(curHCPI))
 				return round_up(curHCPI)
 		return 0
 
@@ -95,7 +95,7 @@ class HHSEntry(models.Model):
 			l20 = sorted(ds[:20], key=lambda hhs: hhs.sd)
 			return l20[:8]
 		return []
-		
+
 	@classmethod
 	def calc_all_hcpis(cls, user):
 		ds = HHSEntry.objects.filter(player=user).order_by('-date')
@@ -110,15 +110,15 @@ class HHSEntry(models.Model):
 			h = li[0]
 			h.hcpi = get_hcpi_fromlist(li)
 			h.save()
-		
+
 	def save(self, *args, **kwargs):
 		p = self.player
 		self.sd = (self.score-self.cr)*113/self.slope
 		super().save(*args, **kwargs)
 
 	def __str__(self):
-		return "%s, %s, %s, %s" % (self.date.isoformat(), self.where, 
-								   self.score, self.hcpi) 
+		return "%s, %s, %s, %s, %s, %s, %s" % (self.date.isoformat(), self.where,
+								   self.score, self.cr, self.slope, self.sd, self.hcpi)
 
 
 class UserHCPI(models.Model):

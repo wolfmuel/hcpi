@@ -1,4 +1,5 @@
 import os
+import pandas as pd
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
@@ -157,7 +158,10 @@ def graph(request):
 
 
 def download(request):
-	os.makedirs('/download/'+str(request.user), exist_ok=True)
+#	os.makedirs('/download', exist_ok=True)
+	entries =  HHSEntry.objects.filter(player=request.user).order_by('-date')
+	df = pd.DataFrame(data=entries)
+	df.to_csv('./'+str(request.user)+".csv", index=False)
 	return HttpResponseRedirect('/hhs')
 
-		
+
