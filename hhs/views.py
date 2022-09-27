@@ -46,9 +46,9 @@ def index(request):
 	curHCPI = HHSEntry.get_curhcpi(request.user)
 
 	if curHCPI != 0:
-		strHCPI = "HCPI: "+str(curHCPI)+" -  calc HCPI: "+str(calcHCPI)
+		strHCPI = "HCPI("+str(request.user)+"): "+str(curHCPI)+" -  calc HCPI: "+str(calcHCPI)
 	else:
-		strHCPI = "HCPI: "+str(calcHCPI)
+		strHCPI = "HCPI("+str(request.user)+"): "+str(calcHCPI)
 
 	context = {
 		'latest_list': latest_list,
