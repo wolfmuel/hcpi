@@ -36,4 +36,23 @@ for i in range(0, l-19):
 	h.save()
 	print(h.hcpi)
 
+ds = HHSEntry.objects.filter(player='jessica').order_by('-date')
+for d in ds:
+	h = HHSEntry(player='jessica2', date=s[0], where="", score=s[1],
+				 : cr=decimal.Decimal(float(s[2])), slope=s[3]); 
+	h.save()
+
+ds = HHSEntry.objects.filter(player='jessica2').order_by('-date')
+for d in ds:
+	d.hcpi = 0
+	d.save()
+
+l = len(ds)
+r = 0
+for i in range(0, l-19):
+	li = ds[i:i+20]
+	h = li[0]
+	h.hcpi = get_hcpi(li)
+	h.save()
+	print(h.hcpi)
 
