@@ -67,9 +67,10 @@ def add(request):
 			cscore = form.cleaned_data['score']
 			ccr = form.cleaned_data['cr']
 			cslope = form.cleaned_data['slope']
+			csd = (cscore-ccr)*113/cslope
 
 			h = HHSEntry(player=request.user, date=cdate, where=cwhere,
-						 score=cscore, cr=ccr, slope=cslope)
+						 score=cscore, cr=ccr, slope=cslope, sd=csd)
 			h.save()
 			logger.warning("added hcpi: "+str(h.hcpi))
 		else:
@@ -96,6 +97,7 @@ def detail(request, hhs_id):
 					cscore = form.cleaned_data['score']
 					ccr = form.cleaned_data['cr']
 					cslope = form.cleaned_data['slope']
+					csd = (cscore-ccr)*113/cslope
 
 					h = HHSEntry.objects.get(pk=hhs_id)
 					h.date = cdate
@@ -103,6 +105,7 @@ def detail(request, hhs_id):
 					h.score = cscore
 					h.cr = ccr
 					h.slope = cslope
+					h.sd = csd
 					h.save()
 					logger.warning("changed hcpi: "+str(h.hcpi))
 

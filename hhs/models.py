@@ -113,7 +113,7 @@ class HHSEntry(models.Model):
 
 	def save(self, *args, **kwargs):
 		p = self.player
-		self.sd = (self.score-self.cr)*113/self.slope
+#		self.sd = (self.score-self.cr)*113/self.slope
 		super().save(*args, **kwargs)
 
 	def __str__(self):
@@ -125,3 +125,4 @@ class UserHCPI(models.Model):
 	player = models.CharField(max_length=20, default='wolfmuel')
 	lowHCPI = models.DecimalField("lowHCPI", default=18.0, max_digits=3, decimal_places=1)
 	date = models.DateField('date played')
+	dbuser = models.CharField(max_length=20, default='wolfmuel')
