@@ -41,7 +41,7 @@ def index(request):
 	latest_list = HHSEntry.objects.filter(player=request.user).order_by('-date')
 	template = loader.get_template('hhs/index.html')
 
-	HHSEntry.calc_all_hcpis(request.user)
+#	HHSEntry.calc_all_hcpis(request.user)
 	calcHCPI = HHSEntry.get_hcpi(request.user)
 	curHCPI = HHSEntry.get_curhcpi(request.user)
 
@@ -72,6 +72,7 @@ def add(request):
 			h = HHSEntry(player=request.user, date=cdate, where=cwhere,
 						 score=cscore, cr=ccr, slope=cslope, sd=csd)
 			h.save()
+			HHSEntry.calc_all_hcpis(request.user)
 			logger.warning("added hcpi: "+str(h.hcpi))
 		else:
 			logger.warning("error: "+str(form.errors))
@@ -107,12 +108,15 @@ def detail(request, hhs_id):
 					h.slope = cslope
 					h.sd = csd
 					h.save()
+					HHSEntry.calc_all_hcpis(request.user)
 					logger.warning("changed hcpi: "+str(h.hcpi))
 
 				elif request.POST['do'] == 'Delete':
 					h = HHSEntry.objects.get(pk=hhs_id)
 					logger.warning("deleteing: "+str(h.date))
 					h.delete()
+					HHSEntry.calc_all_hcpis(request.user)
+
 			else:
 				logger.warning("error: "+str(form.errors))
 			return HttpResponseRedirect('..')
@@ -134,6 +138,8 @@ def delete(request, hhs_id):
 	try:
 		h = HHSEntry.objects.get(pk=hhs_id)
 		h.delete()
+		HHSEntry.calc_all_hcpis(request.user)
+
 	except HHSEntry.DoesNotExist:
 		raise Http404("Entry does not exist")
 

@@ -98,10 +98,10 @@ class HHSEntry(models.Model):
 
 	@classmethod
 	def calc_all_hcpis(cls, user):
-		ds = HHSEntry.objects.filter(player=user).order_by('-date')
-		for d in ds:
-			d.hcpi = 0
-			d.save()
+		ds = HHSEntry.objects.filter(player=user).order_by('-date')[:28]
+#		for d in ds:
+#			d.hcpi = 0
+#			d.save()
 
 		l = len(ds)
 		r = 0
